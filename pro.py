@@ -1,12 +1,18 @@
-#讀取檔案
+import os #operation system 檢查檔案有沒有在
 products=[]
-with open ('products.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        if '商品,價格' in line:
-            continue #跳過這回合
+if os.path.isfile('products.csv'):
+    print ('找到檔案')
+    #找到檔案開始讀取檔案
+    with open ('products.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            if '商品,價格' in line:
+                continue #跳過這回合
         name,price=line.strip().split(',') #split切割,遇到逗點就切割;strip去掉空格及換行符號
         products.append([name, price])
-print(products)
+    print(products)
+
+else:   
+    print('找不到檔案')
 
 #讓消費者輸入
 products=[]
@@ -18,7 +24,7 @@ while True:
     p = [name, price]
     products.append(p)
 print(products)    
-print(products[0][0]) #大清單中第一個清單的第一個位置
+#print(products[0][0]) #大清單中第一個清單的第一個位置
 
 #印出所有購買紀錄
 for p in products:
